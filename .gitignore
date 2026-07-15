@@ -1,0 +1,54 @@
+# Original forensic evidence
+evidence/original/*
+
+# Forensic working copies
+evidence/working-copies/*
+
+# Potentially sensitive or suspicious extracted artifacts
+evidence/extracted-artifacts/*
+
+# Packet captures
+*.pcap
+*.pcapng
+*.cap
+
+# Memory images and dumps
+*.raw
+*.mem
+*.dmp
+*.vmem
+
+# Disk and forensic image formats
+*.E01
+*.e01
+*.dd
+*.img
+*.vhd
+*.vhdx
+*.vmdk
+
+# Executable and script artifacts
+*.exe
+*.dll
+*.scr
+*.bat
+*.ps1
+
+# Archives that may contain extracted evidence
+*.zip
+*.7z
+*.rar
+
+# Python cache
+__pycache__/
+*.pyc
+
+# IDE and operating system files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
