@@ -120,9 +120,10 @@ Incident Timeline Reconstruction
 MITRE ATT&CK Mapping
             ↓
 Technical Incident Reporting
+```
 
 ## Current Investigation Progress
-```
+
 
 ### Completed
 
