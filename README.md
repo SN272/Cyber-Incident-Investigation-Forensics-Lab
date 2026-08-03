@@ -8,7 +8,7 @@ The investigation is designed as a multi-source forensic analysis project in whi
 
 Rather than analysing unrelated forensic datasets independently, the lab is structured to generate correlated artifacts from a common controlled incident scenario. The investigation focuses on identifying evidence of suspicious execution, repeated network communication, persistence-like activity, and test-data transfer within an isolated virtual environment.
 
-> **Project Status:** Investigation in progress. The isolated lab environment and initial evidence handling workflow have been established.
+> > **Project Status:** Active investigation. The isolated DFIR lab has been established, baseline and simulated network evidence have been acquired, and forensic documentation is actively being developed.
 
 ---
 
@@ -76,6 +76,24 @@ The routing table showed only the directly connected `10.10.50.0/24` lab subnet 
 
 ---
 
+## Investigation Snapshots
+
+### Baseline ICMP Traffic Analysis (NET-001)
+
+The initial network capture established a clean baseline of bidirectional ICMP communication between the Windows workstation and the Kali DFIR analysis system.
+
+![Baseline ICMP Analysis](lab-architecture/screenshots/03_baseline_icmp_analysis.png)
+
+---
+
+### HTTP File Download Simulation (NET-002)
+
+A controlled HTTP file download was performed to generate forensic network artifacts for subsequent analysis. The capture includes the HTTP GET request, HTTP response, and successful object reconstruction.
+
+![HTTP File Download Analysis](lab-architecture/screenshots/04_http_file_download_analysis.png)
+
+---
+
 ## Forensic Workflow
 
 The investigation follows the workflow below:
@@ -105,35 +123,37 @@ Technical Incident Reporting
 
 ## Current Investigation Progress
 
+
 ### Completed
 
 - [x] Defined the simulated incident scenario.
 - [x] Established the investigation scope.
 - [x] Defined evidence-driven investigation questions.
 - [x] Created an evidence handling structure.
-- [x] Created an evidence manifest template.
+- [x] Created an evidence manifest.
 - [x] Established a simulated chain-of-custody log.
 - [x] Configured the Kali Linux simulation node.
+- [x] Configured the Windows 10 workstation.
 - [x] Created the isolated `DFIR-LAB` VirtualBox internal network.
-- [x] Assigned the Kali node the static IPv4 address `10.10.50.10/24`.
-- [x] Verified the absence of an IPv4 default route on the lab interface.
-- [x] Documented the initial lab network validation.
+- [x] Assigned static IPv4 addresses to both investigation systems.
+- [x] Validated bidirectional network connectivity.
+- [x] Acquired baseline network evidence (NET-001).
+- [x] Acquired simulated HTTP evidence (NET-002).
+- [x] Verified evidence integrity using SHA-256.
+- [x] Performed baseline ICMP analysis.
+- [x] Performed HTTP request/response analysis.
+- [x] Documented forensic evidence metadata.
 
 ### In Progress / Planned
 
-- [ ] Introduce and configure the Windows workstation.
-- [ ] Validate direct communication between the two lab nodes.
-- [ ] Generate the controlled simulated incident sequence.
-- [ ] Acquire packet capture evidence.
 - [ ] Acquire volatile memory evidence.
 - [ ] Acquire targeted disk or filesystem evidence.
-- [ ] Verify evidence integrity using SHA-256.
-- [ ] Perform network forensic analysis.
 - [ ] Perform volatile memory analysis.
 - [ ] Perform disk and filesystem analysis.
-- [ ] Extract and enrich Indicators of Compromise.
-- [ ] Develop a correlated master incident timeline.
-- [ ] Map findings to MITRE ATT&CK.
+- [ ] Extract Indicators of Compromise (IOCs).
+- [ ] Correlate network, memory and filesystem evidence.
+- [ ] Develop the master incident timeline.
+- [ ] Map findings to the MITRE ATT&CK framework.
 - [ ] Produce the final technical incident report.
 
 ---
@@ -151,13 +171,13 @@ Cyber-Incident-Investigation-Forensics-Lab/
 │   ├── incident_scope.md
 │   └── investigation_questions.md
 │
-├── evidence/
+evidence/
 │   ├── README.md
 │   ├── evidence_manifest.csv
+│   ├── evidence_metadata.md
 │   ├── original/
 │   ├── working-copies/
-│   └── extracted-artifacts/
-│
+│   └── extracted-artifacts/│
 ├── chain-of-custody/
 │   └── chain_of_custody.md
 │
@@ -165,8 +185,10 @@ Cyber-Incident-Investigation-Forensics-Lab/
     ├── lab_architecture.md
     ├── network_validation.md
     ├── lab_command_reference.md
-    └── screenshots/
-        └── kali_network_configuration.png
+ ── screenshots/
+    |── kali_network_configuration.png
+    ├── 03_baseline_icmp_analysis.png
+    └── 04_http_file_download_analysis.png
 ```
 
 The repository structure will expand as network, memory, disk, timeline, IOC correlation, and reporting phases are completed.

@@ -1,1 +1,3 @@
-evidence_id,evidence_type,filename,source,acquisition_date_utc,acquisition_method,sha256,file_size_bytes,original_path,working_copy_path,status,notes
+Evidence ID,Evidence Name,Evidence Type,Source System,Acquisition Method,Original Location,SHA-256 Hash,Status,Remarks
+NET-001,Baseline Network Connectivity Capture,PCAP,WS-FIN-01 ↔ DFIR-ANALYST,Wireshark Packet Capture,~/DFIR-Lab/evidence/original/NET-001_baseline_connectivity.pcapng,a114faf5e6b2f98fa2cb441a45f15a5b7a792279071da33e0c546e742c9536e1,Acquired,Baseline ICMP communication successfully captured and integrity verified.
+NET-002,HTTP File Download Simulation,PCAP,WS-FIN-01 ↔ DFIR-ANALYST,Wireshark Packet Capture,~/DFIR-Lab/evidence/original/NET-002_http_file_download.pcapng,bf81896d1c542e4115dadf5ba7fed70d0b1f103846c9945b1916f061cd8b5b0f,Acquired,HTTP GET request and file download successfully captured for forensic analysis.

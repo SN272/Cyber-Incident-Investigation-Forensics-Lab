@@ -29,25 +29,49 @@ The following principles are applied during the investigation:
 
 ## Evidence Identifier Format
 
-Evidence identifiers use the following format:
+Evidence identifiers are assigned according to the type of forensic evidence collected.
 
-`E###`
+| Prefix | Evidence Type |
+|---------|---------------|
+| NET | Network Capture |
+| MEM | Memory Acquisition |
+| DISK | Disk Image |
+| LOG | System/Event Logs |
+| ART | Extracted Artifacts |
 
 Examples:
 
-* `E001`
-* `E002`
-* `E003`
+- `NET-001`
+- `MEM-001`
+- `DISK-001`
+- `LOG-001`
 
-Evidence identifiers are assigned sequentially during acquisition.
+Evidence identifiers are assigned sequentially within each evidence category.
 
-## Evidence Handling Log
+# Chain of Custody
 
-| Date and Time (UTC) | Evidence ID | Action | Tool or Method | Performed By | Integrity Verification | Notes |
-| ------------------- | ----------- | ------ | -------------- | ------------ | ---------------------- | ----- |
+## Evidence Log
+
+| Evidence ID | Evidence Description | Date & Time (Local) | Collected By | Acquisition Method | SHA-256 Hash | Storage Location | Status |
+|-------------|----------------------|---------------------|--------------|--------------------|--------------|------------------|--------|
+| NET-001 | Baseline network connectivity capture between WS-FIN-01 and DFIR-ANALYST | 2026-08-03 18:28 | Investigator | Wireshark Packet Capture | a114faf5e6b2f98fa2cb441a45f15a5b7a792279071da33e0c546e742c9536e1 | ~/DFIR-Lab/evidence/original/NET-001_baseline_connectivity.pcapng | Original Evidence Preserved |
+| NET-002 | HTTP file download simulation between WS-FIN-01 and DFIR-ANALYST | 2026-08-03 18:3X IST | Investigator | Wireshark Packet Capture | bf81896d1c542e4115dadf5ba7fed70d0b1f103846c9945b1916f061cd8b5b0f | ~/DFIR-Lab/evidence/original/NET-002_http_file_download.pcapng | Original Evidence Preserved |
+
+---
+
+## Integrity Verification
+
+| Evidence ID | Verification Method | Result |
+|-------------|---------------------|--------|
+| NET-001 | SHA-256 Hash Verification | Verified Successfully |
+| NET-002 | SHA-256 Hash Verification | Verified Successfully |
+
+
+---
 
 ## Notes
 
-The evidence handling log will be updated as evidence is acquired, verified, copied, or otherwise processed during the investigation.
-
-Routine read-only forensic analysis does not require a separate log entry for every individual tool command. Significant evidence handling actions, integrity verification activities, and creation of designated forensic copies will be documented.
+- Original evidence remains unmodified.
+- Integrity verified immediately after acquisition.
+- Analysis will be performed on forensic working copies whenever applicable.
+- Evidence IDs are maintained consistently throughout the investigation.
