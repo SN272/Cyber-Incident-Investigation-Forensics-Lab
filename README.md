@@ -76,7 +76,7 @@ The routing table showed only the directly connected `10.10.50.0/24` lab subnet 
 
 ---
 
-## Investigation Snapshots
+## Network Evidence Analysis
 
 ### Baseline ICMP Traffic Analysis (NET-001)
 
@@ -122,7 +122,7 @@ MITRE ATT&CK Mapping
 Technical Incident Reporting
 
 ## Current Investigation Progress
-
+```
 
 ### Completed
 
@@ -171,13 +171,14 @@ Cyber-Incident-Investigation-Forensics-Lab/
 │   ├── incident_scope.md
 │   └── investigation_questions.md
 │
-evidence/
+├── evidence/
 │   ├── README.md
 │   ├── evidence_manifest.csv
 │   ├── evidence_metadata.md
 │   ├── original/
 │   ├── working-copies/
-│   └── extracted-artifacts/│
+│   └── extracted-artifacts/
+│
 ├── chain-of-custody/
 │   └── chain_of_custody.md
 │
@@ -185,10 +186,10 @@ evidence/
     ├── lab_architecture.md
     ├── network_validation.md
     ├── lab_command_reference.md
- ── screenshots/
-    |── kali_network_configuration.png
-    ├── 03_baseline_icmp_analysis.png
-    └── 04_http_file_download_analysis.png
+    └── screenshots/
+        ├── kali_network_configuration.png
+        ├── 03_baseline_icmp_analysis.png
+        └── 04_http_file_download_analysis.png
 ```
 
 The repository structure will expand as network, memory, disk, timeline, IOC correlation, and reporting phases are completed.
@@ -332,4 +333,4 @@ Cyber Security
 
 ## Project Status
 
-**Active Investigation — Lab Environment Established**
+**Active Investigation — Baseline network evidence acquired, HTTP simulation completed, and forensic documentation in progress.**
