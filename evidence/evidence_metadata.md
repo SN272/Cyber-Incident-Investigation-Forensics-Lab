@@ -1,6 +1,6 @@
 # Evidence Metadata
 
-This document records the technical metadata of forensic evidence acquired during the investigation.
+This document records the technical metadata of forensic evidence acquired during the completed investigation.
 
 ---
 
@@ -50,12 +50,12 @@ This document records the technical metadata of forensic evidence acquired durin
 
 ---
 
-## Initial Observations
+## Observations
 
-- Successful bidirectional ICMP communication observed.
-- No packet loss detected.
-- No malformed packets observed.
-- Capture establishes the known-good network baseline prior to incident simulation.
+- Successful bidirectional ICMP communication was observed.
+- No packet loss was detected.
+- No malformed packets were observed.
+- The capture establishes a controlled baseline of network communication within the isolated laboratory environment.
 
 ---
 
@@ -94,21 +94,21 @@ This document records the technical metadata of forensic evidence acquired durin
 
 ## Key Observations
 
-- HTTP GET request successfully captured.
+- An HTTP GET request was successfully captured.
 - Requested object: `confidential.txt`
-- HTTP 200 OK response observed.
-- File transfer successfully completed.
+- An HTTP 200 OK response was observed.
+- The file transfer was successfully completed.
 - The transferred object was recoverable through **File → Export Objects → HTTP**.
 - Source Host: `10.10.50.20` (WS-FIN-01)
 - Destination Host: `10.10.50.10` (DFIR-ANALYST HTTP Server)
 
 ---
 
-## Initial Forensic Value
+## Forensic Value
 
 This capture demonstrates:
 
 - HTTP request and response reconstruction.
-- Identification of downloaded resources.
-- Network timeline reconstruction.
-- Evidence suitable for IOC extraction and protocol analysis.
+- Identification of a transferred resource.
+- Network event timeline analysis.
+- Recovery of an HTTP-transferred object from packet capture.

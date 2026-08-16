@@ -12,41 +12,33 @@ Simulated DFIR Investigation
 
 This document records the handling of forensic evidence used during the simulated investigation.
 
-The project is an academic and cybersecurity portfolio exercise rather than a legal investigation. Therefore, this document demonstrates chain-of-custody and evidence handling principles within a controlled forensic lab environment.
+The project is an academic and cybersecurity portfolio exercise rather than a legal investigation. This document demonstrates evidence handling and chain-of-custody principles within a controlled forensic laboratory environment.
 
 ## Evidence Handling Principles
 
-The following principles are applied during the investigation:
+The following principles were applied during the investigation:
 
-* Each acquired evidence item is assigned a unique evidence identifier.
-* Evidence acquisition details are documented.
-* Cryptographic hashes are calculated after acquisition.
-* Original evidence is preserved wherever technically possible.
-* Working copies are created for analysis where required.
-* Extracted artifacts are stored separately from original evidence.
-* Relevant evidence handling actions are recorded in the log below.
-* Evidence integrity is verified before forensic analysis.
+- Each evidence item was assigned a unique evidence identifier.
+- Evidence acquisition details were documented.
+- Cryptographic hashes were calculated after acquisition.
+- Evidence integrity was verified using SHA-256.
+- Evidence handling actions were documented in the chain-of-custody record.
+- Evidence documentation was maintained throughout the investigation.
 
 ## Evidence Identifier Format
 
-Evidence identifiers are assigned according to the type of forensic evidence collected.
+Evidence identifiers were assigned according to the type of forensic evidence collected.
 
 | Prefix | Evidence Type |
 |---------|---------------|
 | NET | Network Capture |
-| MEM | Memory Acquisition |
-| DISK | Disk Image |
-| LOG | System/Event Logs |
-| ART | Extracted Artifacts |
 
 Examples:
 
 - `NET-001`
-- `MEM-001`
-- `DISK-001`
-- `LOG-001`
+- `NET-002`
 
-Evidence identifiers are assigned sequentially within each evidence category.
+Evidence identifiers were assigned sequentially within the evidence category.
 
 # Chain of Custody
 
@@ -66,12 +58,17 @@ Evidence identifiers are assigned sequentially within each evidence category.
 | NET-001 | SHA-256 Hash Verification | Verified Successfully |
 | NET-002 | SHA-256 Hash Verification | Verified Successfully |
 
-
 ---
+
+## Evidence Handling Summary
+
+- Network evidence was assigned unique evidence identifiers.
+- SHA-256 integrity was verified after acquisition.
+- Evidence identifiers and metadata were maintained consistently.
+- Evidence handling information was documented for the completed investigation scope.
 
 ## Notes
 
-- Original evidence remains unmodified.
-- Integrity verified immediately after acquisition.
-- Analysis will be performed on forensic working copies whenever applicable.
-- Evidence IDs are maintained consistently throughout the investigation.
+The chain-of-custody record represents the handling procedures used within this simulated academic forensic laboratory.
+
+It should not be interpreted as a legal chain-of-custody record for court proceedings.

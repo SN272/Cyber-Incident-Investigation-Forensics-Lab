@@ -6,70 +6,60 @@ DFIR-2026-001
 
 ## Purpose
 
-This directory is used to organise forensic evidence associated with the simulated Digital Forensics and Incident Response investigation.
+This directory documents the organisation and handling of forensic evidence associated with the simulated DFIR investigation.
 
-The evidence structure separates original acquired evidence, forensic working copies, and artifacts extracted during analysis.
+The repository separates original evidence, working documentation, and extracted-artifact storage.
 
 ## Directory Structure
 
 ### `original/`
 
-Contains original forensic evidence acquired during the simulated incident investigation.
+Reserved for original forensic evidence acquired during the investigation.
 
-Original evidence should not be intentionally modified after acquisition.
-
-Cryptographic hashes are calculated and documented to establish evidence integrity.
+The directory is empty in the final published repository. Evidence excluded from the repository is documented through the evidence manifest, metadata, and integrity records.
 
 ### `working-copies/`
 
-Contains forensic copies designated for analysis.
-
-Where tool compatibility or investigative workflow requires direct access to an evidence file, a working copy should be used instead of intentionally modifying the original evidence.
+Contains evidence documentation and designated working material used during the investigation.
 
 ### `extracted-artifacts/`
 
-Contains files and artifacts extracted during forensic analysis.
+Reserved for artifacts extracted or derived during forensic analysis.
 
-Examples may include:
-
-* Network objects.
-* Executable files.
-* Scripts.
-* Documents.
-* Memory-extracted processes.
-* Configuration artifacts.
-* Relevant filesystem artifacts.
-
-Extracted artifacts are considered investigation outputs and are stored separately from the original evidence.
+The directory is empty in the final published project scope.
 
 ## Evidence Handling Workflow
 
-The following evidence handling process is used in this project:
+The completed workflow was:
 
 1. Identify the evidence source.
-2. Acquire or generate the evidence within the controlled investigation environment.
+2. Acquire or generate the evidence in the controlled laboratory.
 3. Assign a unique evidence identifier.
 4. Record acquisition details.
-5. Calculate cryptographic hashes.
-6. Document the evidence in the evidence manifest.
-7. Preserve the original evidence.
-8. Create a working copy where required.
-9. Verify the working copy against the original evidence.
-10. Perform forensic analysis on the designated evidence copy.
-11. Store extracted artifacts separately.
+5. Calculate a cryptographic hash.
+6. Document the evidence in the manifest.
+7. Preserve the evidence according to the laboratory workflow.
+8. Verify evidence integrity.
+9. Perform forensic analysis.
+10. Document the resulting observations and findings.
 
 ## Evidence Integrity
 
-SHA-256 will be used as the primary cryptographic hashing algorithm for evidence integrity verification.
+SHA-256 was used to verify the integrity of the acquired network evidence.
 
-Additional hashes may be recorded where required by a forensic tool or evidence format.
-
-A hash mismatch between an original evidence file and its expected value will be investigated before further analysis.
+The calculated hashes are documented in the evidence manifest, metadata, and chain-of-custody documentation.
 
 ## Repository Storage Notice
 
-Large forensic evidence files may not be committed directly to the public GitHub repository due to file size, licensing, privacy, or security considerations.
+Large forensic evidence files may not be committed to the public GitHub repository due to file size, licensing, privacy, or security considerations.
 
-Where evidence is excluded from version control, the evidence manifest and investigation documentation will retain the evidence identifier, filename, description, cryptographic hash, and relevant acquisition information.
+Where evidence is excluded from version control, the repository retains relevant metadata including:
 
-Potentially suspicious extracted artifacts will not be published as directly executable files in the public repository.
+- Evidence identifier
+- Filename
+- Description
+- Cryptographic hash
+- Evidence type
+- Acquisition information
+
+The `original/` and `extracted-artifacts/` directories are retained for evidence organisation but are empty in the final published project scope.

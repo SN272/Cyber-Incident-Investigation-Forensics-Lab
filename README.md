@@ -2,167 +2,173 @@
 
 ## Overview
 
-This project documents a simulated Digital Forensics and Incident Response (DFIR) investigation involving a suspected Windows workstation compromise.
+This project documents a simulated Digital Forensics and Incident Response (DFIR) investigation conducted within a controlled virtual environment.
 
-The investigation is designed as a multi-source forensic analysis project in which network traffic, volatile memory, and filesystem artifacts are examined and correlated to reconstruct a simulated incident sequence.
+The project demonstrates a structured forensic workflow involving network evidence acquisition and analysis, evidence integrity verification, evidence handling, and investigation documentation.
 
-Rather than analysing unrelated forensic datasets independently, the lab is structured to generate correlated artifacts from a common controlled incident scenario. The investigation focuses on identifying evidence of suspicious execution, repeated network communication, persistence-like activity, and test-data transfer within an isolated virtual environment.
+The investigation was designed around a simulated workstation network-activity scenario and focused on generating and analysing controlled network forensic artifacts rather than interacting with real malicious infrastructure.
 
-> > **Project Status:** Active investigation. The isolated DFIR lab has been established, baseline and simulated network evidence have been acquired, and forensic documentation is actively being developed.
+> **Project Status: Completed**
 
 ---
 
 ## Investigation Scenario
 
-A Windows workstation within a fictional organisational environment is suspected of compromise following unusual outbound network activity.
+A workstation within a fictional organisational environment was involved in controlled network activity within an isolated forensic laboratory.
 
-The simulated investigation examines whether available forensic artifacts support a sequence involving:
+The investigation was designed to examine network communication generated between the laboratory systems and demonstrate how packet-capture evidence can be acquired, preserved, verified, and analysed.
 
-1. User interaction with an externally obtained file.
-2. Suspicious script or command-line execution.
-3. Abnormal parent-child process relationships.
-4. Repeated network communication.
-5. Persistence-like system modification.
-6. Test-data staging and transfer.
+Two controlled network events were captured:
 
-All incident activity is generated within a controlled virtual lab.
+- Baseline ICMP communication.
+- A controlled HTTP file-download activity.
 
-The project does not involve exploitation of unauthorised systems or intentional interaction with active malicious infrastructure.
+All activity was performed within the isolated `DFIR-LAB` virtual network.
+
+The project does not involve exploitation of unauthorised systems or interaction with active malicious infrastructure.
 
 ---
 
 ## Investigation Objectives
 
-The primary objectives are to:
+The project objectives were to:
 
-- Preserve and verify forensic evidence integrity.
-- Analyse packet capture data for suspicious communication patterns.
-- Examine volatile memory for anomalous processes and execution artifacts.
-- Investigate filesystem and user activity artifacts.
-- Extract and document Indicators of Compromise (IOCs).
-- Correlate network, memory, and filesystem evidence.
-- Reconstruct a timestamp-based incident timeline.
-- Map evidence-supported activity to the MITRE ATT&CK framework.
-- Produce an evidence-supported technical incident conclusion.
+- Establish a controlled DFIR laboratory environment.
+- Define and document the investigation scenario.
+- Acquire controlled network evidence.
+- Analyse ICMP and HTTP traffic using Wireshark.
+- Verify evidence integrity using SHA-256.
+- Maintain evidence metadata and chain-of-custody documentation.
+- Document evidence-based findings and limitations.
 
 ---
 
 ## Lab Architecture
 
-The simulated incident environment uses Oracle VirtualBox and a dedicated internal network named `DFIR-LAB`.
+The investigation used Oracle VirtualBox with an isolated internal network named `DFIR-LAB`.
 
-| System              | Role                                 | IPv4 Address  |
-|---------------------|--------------------------------------|---------------|
-| Kali Linux          | Controlled simulation node           | `10.10.50.10` |
-| Windows workstation | Simulated victim and evidence source | `10.10.50.20` |
+| System | Role | IPv4 Address |
+|---|---|---|
+| Kali Linux | Analysis / network node | `10.10.50.10` |
+| Windows workstation | Simulated workstation | `10.10.50.20` |
 
-The lab network uses the IPv4 subnet `10.10.50.0/24`.
+The laboratory network used:
 
-No IPv4 default gateway is configured for the isolated incident network.
+- Network: `10.10.50.0/24`
+- No IPv4 default gateway
+- No external routing through the lab network
 
-The known lab topology and static addressing scheme are documented before incident evidence generation to support later forensic correlation.
-
-Detailed architecture documentation is available in [`lab-architecture/lab_architecture.md`](lab-architecture/lab_architecture.md).
-
-### Initial Network Validation
-
-The Kali simulation node was assigned the static IPv4 address `10.10.50.10/24`.
-
-The routing table showed only the directly connected `10.10.50.0/24` lab subnet and no IPv4 default route.
-
-![Kali simulation node IPv4 configuration and routing table](lab-architecture/screenshots/kali_network_configuration.png)
-
-**Figure 1. Kali simulation node IPv4 configuration and routing state.**
+Detailed configuration is documented in [`lab-architecture/lab_architecture.md`](lab-architecture/lab_architecture.md).
 
 ---
 
 ## Network Evidence Analysis
 
-### Baseline ICMP Traffic Analysis (NET-001)
+### Baseline ICMP Traffic — NET-001
 
-The initial network capture established a clean baseline of bidirectional ICMP communication between the Windows workstation and the Kali DFIR analysis system.
+A baseline network capture was acquired to establish controlled ICMP communication within the isolated laboratory.
+
+The capture was analysed using Wireshark to verify the expected communication between the laboratory systems.
 
 ![Baseline ICMP Analysis](lab-architecture/screenshots/03_baseline_icmp_analysis.png)
 
+**Figure 1. Baseline ICMP traffic analysis.**
+
+The evidence integrity was verified using SHA-256.
+
 ---
 
-### HTTP File Download Simulation (NET-002)
+### HTTP File Download — NET-002
 
-A controlled HTTP file download was performed to generate forensic network artifacts for subsequent analysis. The capture includes the HTTP GET request, HTTP response, and successful object reconstruction.
+A controlled HTTP file transfer was performed within the isolated laboratory to generate a network forensic artifact.
+
+The resulting PCAP was analysed using Wireshark to examine:
+
+- HTTP request and response traffic
+- Source and destination hosts
+- Transfer timing
+- The transferred object
+- Reconstructed HTTP communication
 
 ![HTTP File Download Analysis](lab-architecture/screenshots/04_http_file_download_analysis.png)
+
+**Figure 2. Controlled HTTP file-transfer analysis.**
+
+The evidence integrity was verified using SHA-256.
+
+---
+
+## Evidence Integrity
+
+SHA-256 was used to verify the integrity of the acquired network evidence.
+
+The documented evidence items are:
+
+- `NET-001` — Baseline Network Connectivity Capture
+- `NET-002` — HTTP File Download Simulation
+
+Evidence identifiers, filenames, hashes, and acquisition details are documented in the evidence manifest and metadata files.
+
+Original evidence is kept separate from working documentation where applicable.
 
 ---
 
 ## Forensic Workflow
 
-The investigation follows the workflow below:
+The completed investigation followed this workflow:
 
-```text
 Case Definition and Scoping
             ↓
-Evidence Identification and Acquisition
+Evidence Identification
             ↓
-Evidence Integrity Verification
+Evidence Acquisition
             ↓
-Network Forensic Analysis
+SHA-256 Integrity Verification
             ↓
-Volatile Memory Analysis
+Network Traffic Analysis
             ↓
-Disk and Filesystem Analysis
+Evidence Documentation
             ↓
-IOC Extraction and Threat Intelligence Enrichment
-            ↓
-Cross-Source Artifact Correlation
-            ↓
-Incident Timeline Reconstruction
-            ↓
-MITRE ATT&CK Mapping
-            ↓
-Technical Incident Reporting
-```
+Evidence-Based Findings
 
-## Current Investigation Progress
+---
 
+## Completed Work
 
-### Completed
-
-- [x] Defined the simulated incident scenario.
-- [x] Established the investigation scope.
-- [x] Defined evidence-driven investigation questions.
-- [x] Created an evidence handling structure.
-- [x] Created an evidence manifest.
-- [x] Established a simulated chain-of-custody log.
-- [x] Configured the Kali Linux simulation node.
-- [x] Configured the Windows 10 workstation.
-- [x] Created the isolated `DFIR-LAB` VirtualBox internal network.
-- [x] Assigned static IPv4 addresses to both investigation systems.
-- [x] Validated bidirectional network connectivity.
-- [x] Acquired baseline network evidence (NET-001).
-- [x] Acquired simulated HTTP evidence (NET-002).
+- [x] Defined the simulated investigation scenario.
+- [x] Defined the investigation scope and questions.
+- [x] Established the DFIR laboratory environment.
+- [x] Configured and validated the isolated `DFIR-LAB` network.
+- [x] Acquired baseline network evidence (`NET-001`).
+- [x] Acquired controlled HTTP evidence (`NET-002`).
+- [x] Analysed ICMP traffic using Wireshark.
+- [x] Analysed HTTP request and response traffic.
+- [x] Reconstructed the controlled HTTP file transfer.
 - [x] Verified evidence integrity using SHA-256.
-- [x] Performed baseline ICMP analysis.
-- [x] Performed HTTP request/response analysis.
-- [x] Documented forensic evidence metadata.
+- [x] Documented evidence metadata and chain of custody.
+- [x] Documented the investigation findings and limitations.
 
-### In Progress / Planned
+---
 
-- [ ] Acquire volatile memory evidence.
-- [ ] Acquire targeted disk or filesystem evidence.
-- [ ] Perform volatile memory analysis.
-- [ ] Perform disk and filesystem analysis.
-- [ ] Extract Indicators of Compromise (IOCs).
-- [ ] Correlate network, memory and filesystem evidence.
-- [ ] Develop the master incident timeline.
-- [ ] Map findings to the MITRE ATT&CK framework.
-- [ ] Produce the final technical incident report.
+## Evidence
+
+The completed investigation contains two documented network evidence items:
+
+| Evidence ID | Evidence |
+|---|---|
+| `NET-001` | Baseline Network Connectivity Capture |
+| `NET-002` | HTTP File Download Simulation |
+
+Evidence details are maintained in:
+
+- `evidence/working-copies/evidence_manifest.csv`
+- `evidence/working-copies/evidence_metadata.md`
 
 ---
 
 ## Repository Structure
 
-```text
-Cyber-Incident-Investigation-Forensics-Lab/
+Cyber-Incident-Investigation-Forensics/
 │
 ├── README.md
 ├── .gitignore
@@ -172,154 +178,109 @@ Cyber-Incident-Investigation-Forensics-Lab/
 │   ├── incident_scope.md
 │   └── investigation_questions.md
 │
-├── evidence/
-│   ├── README.md
-│   ├── evidence_manifest.csv
-│   ├── evidence_metadata.md
-│   ├── original/
-│   ├── working-copies/
-│   └── extracted-artifacts/
-│
 ├── chain-of-custody/
 │   └── chain_of_custody.md
 │
+├── evidence/
+│   └── working-copies/
+│       ├── evidence_manifest.csv
+│       ├── evidence_metadata.md
+│       └── README.md
+│
 └── lab-architecture/
     ├── lab_architecture.md
-    ├── network_validation.md
     ├── lab_command_reference.md
+    ├── network_validation.md
     └── screenshots/
-        ├── kali_network_configuration.png
         ├── 03_baseline_icmp_analysis.png
-        └── 04_http_file_download_analysis.png
-```
-
-The repository structure will expand as network, memory, disk, timeline, IOC correlation, and reporting phases are completed.
-
----
-
-## Evidence Handling
-
-Original forensic evidence is preserved separately from designated working copies and extracted artifacts.
-
-SHA-256 is used as the primary evidence integrity verification algorithm.
-
-Large forensic evidence files and potentially suspicious executable artifacts are excluded from the public repository through `.gitignore`.
-
-Where evidence is not published directly, the project documentation will retain relevant metadata such as:
-
-- Evidence identifier.
-- Evidence type.
-- Filename.
-- Acquisition method.
-- Acquisition timestamp.
-- File size.
-- SHA-256 hash.
-- Evidence handling status.
-
-See [`evidence/README.md`](evidence/README.md) for the documented evidence handling workflow.
+        ├── 04_http_file_download_analysis.png
+        └── kali_network_configuration.png
 
 ---
 
 ## Tools and Technologies
-
-Tools planned or used during the investigation include:
 
 ### Network Forensics
 
 - Wireshark
 - Linux networking utilities
 
-### Memory Forensics
+### Laboratory Environment
 
-- Volatility 3
-- Volatility Workbench
-
-### Disk and Filesystem Forensics
-
-- Autopsy
-- FTK Imager
-
-### Lab and System Configuration
-
-- Oracle VirtualBox
 - Kali Linux
-- Windows
-- NetworkManager (`nmcli`)
+- Windows 10
+- Oracle VirtualBox
+- NetworkManager / `nmcli`
 
-### Automation and Correlation
+### Evidence Handling
 
-- Python
-
-### Threat Intelligence
-
-- Public OSINT resources
-- Public threat intelligence resources
-
-The use of each forensic tool will be documented according to its role in the investigation rather than treated as evidence of a finding by itself.
+- SHA-256
+- Markdown
+- CSV
+- Chain-of-custody documentation
 
 ---
 
 ## Investigation Documentation
 
-The project documentation currently includes:
+The repository contains documentation covering:
 
 - [Case Background](case-files/case_background.md)
 - [Incident Investigation Scope](case-files/incident_scope.md)
 - [Investigation Questions](case-files/investigation_questions.md)
-- [Evidence Handling Documentation](evidence/README.md)
-- [Evidence Handling and Chain of Custody Log](chain-of-custody/chain_of_custody.md)
+- [Evidence Handling](evidence/working-copies/README.md)
+- [Evidence Metadata](evidence/working-copies/evidence_metadata.md)
+- [Evidence Manifest](evidence/working-copies/evidence_manifest.csv)
+- [Chain of Custody](chain-of-custody/chain_of_custody.md)
 - [DFIR Lab Architecture](lab-architecture/lab_architecture.md)
-- [Isolated Network Validation](lab-architecture/network_validation.md)
+- [Network Validation](lab-architecture/network_validation.md)
 - [Lab Command Reference](lab-architecture/lab_command_reference.md)
 
 ---
 
-## Evidence Standard
+## Findings
 
-Major investigative conclusions should be supported by observable forensic artifacts where possible.
+The available network evidence demonstrates:
 
-Relevant findings may reference:
+- Successful baseline ICMP communication.
+- Controlled HTTP communication.
+- HTTP GET request and response activity.
+- Controlled file-transfer activity.
+- Recovery of the transferred object from the HTTP capture.
 
-- Packet numbers.
-- Timestamps.
-- Source and destination IP addresses.
-- Domain names.
-- Process identifiers.
-- Process names.
-- Parent-child process relationships.
-- Command-line artifacts.
-- File paths.
-- Cryptographic hashes.
-- Registry or persistence artifacts.
-- Forensic tool output.
+The investigation conclusions are limited to observations directly supported by the available evidence.
 
-Questions that cannot be conclusively answered using the available evidence will be documented as inconclusive rather than assumed.
+No unsupported claims are made regarding memory, disk, malware, persistence, command-and-control, or data exfiltration because those evidence sources were not acquired as part of the final project scope.
 
 ---
 
 ## Ethical and Safety Statement
 
-This repository documents a controlled cybersecurity lab created for academic and portfolio purposes.
+This repository documents a controlled cybersecurity laboratory created for academic and portfolio purposes.
 
-The simulated incident environment is designed to generate forensic artifacts without targeting unauthorised systems.
+All simulated activity was conducted within an isolated virtual environment.
 
-No active malicious infrastructure is intentionally contacted during the investigation.
-
-Potentially suspicious extracted artifacts will not be published as directly executable files in this public repository.
+The project does not target unauthorised systems or interact with active malicious infrastructure.
 
 ---
 
-## Project Scope and Limitations
+## Scope and Limitations
 
-This project represents a simulated DFIR investigation and is not a legal forensic examination.
+This project represents a controlled academic DFIR investigation rather than a legal or enterprise forensic examination.
 
-The investigation conclusions are limited to the artifacts generated and acquired within the controlled lab environment.
+The final scope is limited to the network evidence successfully acquired and analysed.
 
-The absence of a specific artifact will not automatically be interpreted as proof that an activity did not occur.
+The project does not include:
 
-Resource constraints may require targeted or logical filesystem acquisition rather than a complete physical disk image.
+- Live memory acquisition or analysis
+- Full disk imaging
+- Filesystem forensic examination
+- Malware execution or analysis
+- Threat-actor attribution
+- Comprehensive MITRE ATT&CK mapping
+- Enterprise-scale incident response
 
-Where targeted acquisition is used, the acquisition scope and resulting forensic limitations will be explicitly documented in the relevant analysis and final investigation reports.
+Where evidence was unavailable, no unsupported conclusions were drawn.
 
 ---
 
@@ -334,4 +295,18 @@ Cyber Security
 
 ## Project Status
 
-**Active Investigation — Baseline network evidence acquired, HTTP simulation completed, and forensic documentation in progress.**
+**Completed**
+
+The project has reached its final documented scope. The acquired network evidence, forensic observations, integrity records, and investigation documentation have been preserved in the repository.
+
+---
+
+## Final Project Summary
+
+This project demonstrates a controlled DFIR workflow for network evidence acquisition, preservation, integrity verification, and packet-level analysis.
+
+The investigation successfully established an isolated forensic laboratory, generated controlled network evidence, analysed the resulting PCAP files using Wireshark, and documented the evidence-handling process.
+
+The final project scope is intentionally limited to the evidence and findings that were successfully obtained during the investigation.
+
+**Status: Completed**

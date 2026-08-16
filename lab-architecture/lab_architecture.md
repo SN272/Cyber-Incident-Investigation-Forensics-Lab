@@ -6,142 +6,164 @@ DFIR-2026-001
 
 ## Purpose
 
-A controlled virtual lab environment is used to generate and examine the forensic artifacts associated with this simulated Digital Forensics and Incident Response investigation.
+A controlled virtual laboratory environment was established to generate and examine forensic network evidence associated with this simulated Digital Forensics and Incident Response investigation.
 
-The lab is designed to produce correlated network, volatile memory, and filesystem evidence from a common simulated incident scenario.
+The lab was designed to isolate the simulated investigation traffic from external network infrastructure while providing defined system roles and static network addressing.
 
-The environment separates simulated incident traffic from external network infrastructure and provides known system roles and addressing for later forensic correlation.
+The completed project focuses on controlled network evidence generation and analysis.
 
 ## Architecture Overview
 
-The investigation lab uses Oracle VirtualBox to provide an isolated virtual network named `DFIR-LAB`.
+The investigation lab uses Oracle VirtualBox and an isolated internal network named `DFIR-LAB`.
 
-The planned lab contains two virtual systems:
+The laboratory systems used for the completed investigation were:
 
-| System              | Role                                 | IPv4 Address  |
-| ------------------- | ------------------------------------ | ------------- |
-| Kali Linux          | Controlled simulation node           | `10.10.50.10` |
-| Windows workstation | Simulated victim and evidence source | `10.10.50.20` |
+| System | Role | IPv4 Address |
+| ------------------- | -------------------------------- | ------------- |
+| Kali Linux | Analysis and controlled network node | `10.10.50.10` |
+| Windows workstation | Simulated workstation and network endpoint | `10.10.50.20` |
 
-The Kali Linux system is used as a controlled endpoint for generating benign network activity associated with the simulated incident.
+Both systems communicated within the isolated laboratory network.
 
-The Windows virtual machine will act as the simulated affected workstation and primary evidence source.
+The Kali Linux system was used for network configuration, analysis, and controlled network activity.
 
-Forensic analysis will be performed separately from the simulated incident environment.
+The Windows workstation was used as the simulated workstation endpoint during controlled network evidence generation.
 
 ## Network Design
 
-The virtual incident network uses the following IPv4 configuration:
+The virtual investigation network used the following IPv4 configuration:
 
 * Network: `10.10.50.0/24`
 * VirtualBox network type: Internal Network
 * VirtualBox network name: `DFIR-LAB`
 * IPv4 default gateway: Not configured
 * External routing: Not configured
-* Kali simulation node: `10.10.50.10`
-* Planned Windows workstation: `10.10.50.20`
+* Kali Linux: `10.10.50.10/24`
+* Windows workstation: `10.10.50.20/24`
 
-Both virtual systems are intended to communicate directly within the same IPv4 subnet.
+Both systems communicated directly within the same IPv4 subnet.
 
-A default IPv4 route is not configured for the isolated incident network.
+No IPv4 default route was configured for the isolated investigation network.
 
-This design reduces the possibility of controlled simulation traffic being routed to external network infrastructure.
+This design reduced the possibility of controlled investigation traffic being routed to external network infrastructure.
 
-## Kali Linux Simulation Node
+## Kali Linux Analysis Node
 
 ### System Role
 
-The Kali Linux virtual machine is designated as the controlled simulation node.
+The Kali Linux virtual machine served as the primary analysis and controlled network node for the investigation.
 
-Its purpose is to provide lab-controlled services and receive benign simulated incident traffic from the Windows workstation.
+It was used to:
 
-The system is not used to exploit unauthorised external systems as part of this project.
+* Configure and validate the isolated investigation network.
+* Generate or receive controlled network activity.
+* Capture network traffic using Wireshark.
+* Analyse the resulting packet captures.
+
+The system was not used to exploit unauthorised external systems as part of the project.
 
 ### Network Configuration
 
-The Kali network interface used for the lab is:
+The Kali network interface used for the lab was:
 
 * Interface: `eth0`
-* NetworkManager profile: `DFIR-LAB-KALI`
 * IPv4 address: `10.10.50.10/24`
 * IPv4 gateway: None
 * IPv4 default route: None
-* IPv6 on lab profile: Disabled
 
 ### Routing Verification
 
-The configured IPv4 routing table contained only the directly connected lab subnet:
+The configured IPv4 routing table contained the directly connected laboratory subnet:
 
 `10.10.50.0/24 dev eth0`
 
-No IPv4 default route was present through the lab interface.
+No IPv4 default route was present through the laboratory interface.
 
 An external IPv4 connectivity test to `8.8.8.8` returned `Network is unreachable`, consistent with the absence of an IPv4 default route.
 
 ## Windows Workstation
 
-### Planned System Role
+### System Role
 
-The Windows virtual machine will represent the suspected compromised workstation in the simulated incident.
+The Windows virtual machine served as the simulated workstation endpoint for controlled network evidence generation.
 
-The system will be used to generate controlled forensic artifacts associated with:
+The system participated in the isolated `DFIR-LAB` network and was used during the generation of the documented network captures.
 
-* User download activity.
-* Script and command-line execution.
-* Parent-child process relationships.
-* Repeated network communication.
-* Controlled persistence-like artifacts.
-* Test-data staging and transfer.
+The completed evidence includes:
 
-All generated activity will remain within the controlled lab scenario.
+* Baseline ICMP communication.
+* Controlled HTTP file-transfer activity.
 
-### Planned Network Configuration
+The Windows system was not used as the source of a completed volatile-memory or full-disk forensic acquisition within the final project scope.
 
-The Windows workstation is assigned the following planned network identity:
+### Network Configuration
+
+The Windows workstation used:
 
 * IPv4 address: `10.10.50.20/24`
 * IPv4 gateway: None
 * VirtualBox network: `DFIR-LAB`
 
-The Windows system has not yet been introduced into the lab at the current investigation stage.
+## Evidence Generation and Analysis
 
-## Evidence Correlation Objective
+The laboratory architecture supported the generation and analysis of controlled network evidence.
 
-The architecture is designed to support correlation between multiple forensic evidence sources.
+The completed workflow was:
 
-The intended correlation workflow is:
+1. Configure the isolated laboratory network.
+2. Assign static IPv4 addresses to the laboratory systems.
+3. Validate connectivity between the systems.
+4. Capture baseline ICMP traffic.
+5. Capture controlled HTTP file-transfer traffic.
+6. Preserve the resulting PCAP evidence.
+7. Calculate and verify SHA-256 hashes.
+8. Analyse the captures using Wireshark.
+9. Document the resulting observations.
 
-1. Identify suspicious communication in captured network traffic.
-2. Determine the source and destination systems associated with the communication.
-3. Identify the process associated with the network activity in volatile memory.
-4. Examine process parent-child relationships and command-line artifacts.
-5. Associate suspicious execution with files or artifacts identified in filesystem evidence.
-6. Compare timestamps across network, memory, and filesystem sources.
-7. Reconstruct the simulated incident sequence.
-8. Map evidence-supported activity to relevant MITRE ATT&CK techniques.
+The corresponding evidence items are:
+
+* `NET-001` — Baseline Network Connectivity Capture.
+* `NET-002` — HTTP File Download Simulation.
+
+## Network Isolation
+
+The investigation network was configured without an IPv4 default gateway.
+
+The isolated design prevented the laboratory network from using the configured interface to reach external IPv4 networks.
+
+This was verified through network configuration and connectivity testing.
+
+The resulting network configuration is documented in:
+
+[`network_validation.md`](network_validation.md)
 
 ## Resource Constraints
 
-The forensic lab is hosted on a Windows 11 system with 8 GB of physical memory.
+The laboratory was operated within the available host-system resources.
 
-To reduce resource contention, virtual machines and forensic analysis applications will not necessarily operate simultaneously.
+The investigation used staged network evidence generation and analysis rather than requiring multiple resource-intensive virtual machines to operate simultaneously.
 
-The investigation workflow uses staged evidence generation, acquisition, and analysis.
-
-Large full-disk forensic acquisitions may also be limited by available storage capacity. Where targeted or logical acquisition is used instead of a full physical disk image, the acquisition scope and resulting forensic limitations will be explicitly documented.
+The final project scope was intentionally limited to the network evidence that could be reliably generated, acquired, preserved, and analysed within the laboratory environment.
 
 ## Current Lab Status
 
-The Kali Linux simulation node has been configured on the isolated `DFIR-LAB` VirtualBox internal network.
+The laboratory environment was successfully established for the completed investigation scope.
 
-The Kali node has been assigned the static IPv4 address `10.10.50.10/24`.
+The following components were successfully configured and validated:
 
-The lab interface has no configured IPv4 default gateway or IPv4 default route.
+* Kali Linux analysis node.
+* Windows workstation endpoint.
+* Isolated `DFIR-LAB` VirtualBox internal network.
+* Static IPv4 addressing.
+* Bidirectional network connectivity.
+* Network packet capture and analysis workflow.
 
-External IPv4 connectivity through the lab interface was tested and was not available.
+The resulting network evidence was acquired and documented as `NET-001` and `NET-002`.
 
-The Windows workstation has not yet been introduced into the virtual incident network.
+## Final Scope
 
-## Next Phase
+The laboratory architecture supported the completed network-focused DFIR investigation.
 
-The next phase of the project will introduce the Windows workstation, configure its isolated network identity, and validate controlled communication between the two lab nodes before incident evidence generation begins.
+The project does not claim completion of live memory acquisition, full disk imaging, or multi-source memory/disk correlation.
+
+The final documented architecture and evidence are limited to the controlled network investigation successfully performed.

@@ -10,106 +10,88 @@ Simulated DFIR Investigation
 
 ## Investigation Scope
 
-This project focuses on the forensic examination of a suspected compromised Windows workstation using publicly available or controlled forensic evidence.
+This project focuses on a controlled Digital Forensics and Incident Response (DFIR) investigation involving simulated workstation network activity.
 
-The investigation will examine network traffic, volatile memory, and disk or filesystem artifacts to identify potential malicious activity and reconstruct the sequence of events associated with the simulated incident.
+The completed investigation focuses on network evidence acquisition, packet analysis, evidence integrity verification, and forensic documentation within an isolated laboratory environment.
 
-The project is intended to demonstrate a structured Digital Forensics and Incident Response (DFIR) investigation methodology through evidence preservation, technical artifact analysis, and cross-source forensic correlation.
+The investigation scope is limited to the evidence successfully acquired and analysed during the project.
 
 ## In-Scope Analysis
 
-The following investigative activities are within the scope of this project:
-
 ### Network Forensics
 
-* Packet capture analysis.
-* Network protocol analysis.
-* Identification of internal and external hosts.
-* Suspicious IP address and domain identification.
-* DNS request and response analysis.
-* HTTP and other relevant application-layer traffic analysis.
-* Network flow and communication pattern analysis.
-* Periodic communication and potential beaconing identification.
-* Command-and-control traffic investigation.
-* Investigation of possible data exfiltration indicators.
+- Packet capture analysis.
+- Network protocol analysis.
+- Identification of source and destination hosts.
+- ICMP traffic analysis.
+- HTTP request and response analysis.
+- Controlled HTTP file-transfer analysis.
+- Examination of packet timestamps and communication details.
+- Recovery of the transferred HTTP object.
+- Verification of network evidence integrity using SHA-256.
 
-### Memory Forensics
+### Evidence Handling
 
-* Operating system and memory image identification.
-* Process enumeration and analysis.
-* Process parent-child relationship analysis.
-* Process command-line examination.
-* Network connection analysis from volatile memory.
-* Suspicious or anomalous process identification.
-* Hidden or terminated process investigation where supported by the evidence.
-* Process injection investigation where supported by the evidence.
-* Loaded module and DLL analysis where relevant.
-* Extraction of relevant memory artifacts.
+- Evidence identification and organisation.
+- Evidence manifest maintenance.
+- Evidence metadata documentation.
+- Cryptographic integrity verification.
+- Chain-of-custody documentation.
+- Preservation of documented evidence information.
 
-### Disk and Filesystem Forensics
+### Investigation Documentation
 
-* Filesystem examination.
-* File metadata analysis.
-* Suspicious executable, script, archive, and document identification.
-* Downloaded file investigation.
-* Deleted file analysis where recoverable.
-* User activity artifact examination.
-* Persistence mechanism investigation.
-* Relevant Windows artifact analysis where available.
-* File hash extraction and comparison.
-
-### Threat Intelligence and OSINT
-
-* IP address enrichment.
-* Domain and URL investigation.
-* File hash reputation analysis.
-* Indicator of Compromise validation.
-* Correlation with publicly documented malicious infrastructure or campaigns where supported by available intelligence.
-
-### Incident Correlation
-
-* Cross-correlation of network, memory, and filesystem artifacts.
-* Timestamp normalisation and event sequencing.
-* Master incident timeline development.
-* Attack sequence reconstruction.
-* MITRE ATT&CK technique mapping.
-* Development of evidence-supported incident conclusions.
+- Case definition and scoping.
+- Investigation question definition.
+- Laboratory architecture documentation.
+- Network validation documentation.
+- Evidence handling documentation.
+- Forensic observations and findings.
+- Documentation of investigative limitations.
 
 ## Out-of-Scope Activities
 
-The following activities are outside the scope of this investigation:
+The following activities were not included in the final completed scope:
 
-* Active exploitation of external systems.
-* Deployment of malware against live systems.
-* Unauthorised vulnerability scanning.
-* Unauthorised network reconnaissance.
-* Interaction with active command-and-control infrastructure.
-* Execution of suspicious samples on the host operating system.
-* Modification of original forensic evidence.
-* Attribution of activity to a specific threat actor without sufficient supporting evidence.
+- Live volatile memory acquisition and analysis.
+- Full physical disk imaging.
+- Filesystem forensic examination.
+- Windows memory analysis using Volatility.
+- Malware execution or dynamic malware analysis.
+- Threat-actor attribution.
+- Active command-and-control infrastructure investigation.
+- Data-exfiltration investigation.
+- Comprehensive MITRE ATT&CK mapping.
+- Enterprise-scale incident response activities.
 
 ## Evidence Handling Principles
 
-Original forensic evidence will be preserved in its acquired state wherever possible.
+Evidence identifiers, filenames, cryptographic hashes, and relevant acquisition information are documented in the evidence repository.
 
-Cryptographic hashes will be calculated and documented before analysis to establish evidence integrity.
+SHA-256 was used to verify the integrity of the acquired network evidence.
 
-Analysis will be conducted using forensic images, mounted evidence, or designated working copies depending on the evidence format and tool requirements.
-
-Any extracted artifacts created during the investigation will be stored separately from the original evidence.
-
-The evidence source, acquisition details, cryptographic hashes, and relevant handling information will be documented in an evidence manifest.
+Evidence documentation was maintained separately from the forensic analysis workflow.
 
 ## Investigative Limitations
 
-The investigation conclusions will be limited to the artifacts available within the selected forensic datasets.
+The investigation conclusions are limited to the network artifacts successfully acquired and analysed within the controlled laboratory environment.
 
-The absence of an artifact will not automatically be interpreted as proof that an activity did not occur.
+The available evidence does not support conclusions regarding activities for which corresponding forensic artifacts were not acquired.
 
-Where evidence is incomplete or multiple interpretations are technically possible, the uncertainty and investigative limitations will be documented.
+The absence of a particular artifact is not interpreted as proof that the associated activity did not occur.
 
-## Expected Outcome
+The project is a controlled academic DFIR exercise and should not be interpreted as a complete legal or enterprise forensic examination.
 
-The investigation is expected to produce an evidence-supported technical assessment of the suspected compromise.
+## Final Outcome
 
-The final investigation report will document identified forensic artifacts, Indicators of Compromise, correlated events, the reconstructed attack sequence, relevant MITRE ATT&CK techniques, investigative limitations, and the most likely incident conclusion.
+The completed project demonstrates a targeted network-forensics workflow covering:
+
+1. Case definition and investigation scoping.
+2. Evidence identification and acquisition.
+3. Evidence integrity verification.
+4. Network traffic analysis.
+5. HTTP object reconstruction.
+6. Evidence metadata and chain-of-custody documentation.
+7. Evidence-based observation and conclusion development.
+
+The final findings are limited to observable information supported by the available network evidence.
